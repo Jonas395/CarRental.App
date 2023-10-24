@@ -1,0 +1,187 @@
+.colstatus{
+    width: 80px;
+}
+.coltype{
+    width: 100px
+}
+
+.colregistration {
+    width: 110px;
+}
+.colprice {
+    width: 70px;
+}
+.colssn {
+    width: 40px;
+}
+.coldate {
+    width: 90px;
+}
+.colinput {
+    width: 140px;
+}
+input {
+    width: 130px;
+}
+h2 {
+    font-size: 36px;
+}
+
+table.VehicleTable {
+    border: 1px solid #1C6EA4;
+    background-color: #EEEEEE;
+    width: 50%;
+    text-align: left;
+    border-collapse: collapse;
+}
+
+    table.VehicleTable td, table.VehicleTable th {
+        border: 1px solid #AAAAAA;
+        padding: 3px 2px;
+    }
+
+    table.VehicleTable tbody td {
+        font-size: 13px;
+    }
+
+    table.VehicleTable tr:nth-child(even) {
+        background: #D0E4F5;
+    }
+
+    table.VehicleTable thead {
+        background: #1C6EA4;
+        border-bottom: 2px solid #444444;
+    }
+
+        table.VehicleTable thead th {
+            font-size: 15px;
+            font-weight: bold;
+            color: #FFFFFF;
+            border-left: 2px solid #D0E4F5;
+        }
+
+            table.VehicleTable thead th:first-child {
+                border-left: none;
+            }
+
+    table.VehicleTable tfoot td {
+        font-size: 14px;
+    }
+
+    table.VehicleTable tfoot .links {
+        text-align: right;
+    }
+
+        table.VehicleTable tfoot .links a {
+            display: inline-block;
+            background: #1C6EA4;
+            color: #FFFFFF;
+            padding: 2px 8px;
+            border-radius: 5px;
+        }
+
+table.CustomerTable {
+    border: 1px solid #1C6EA4;
+    background-color: #EEEEEE;
+    width: 20%;
+    text-align: left;
+    border-collapse: collapse;
+}
+
+    table.CustomerTable td, table.CustomerTable th {
+        border: 1px solid #AAAAAA;
+        padding: 3px 2px;
+    }
+
+    table.CustomerTable tbody td {
+        font-size: 13px;
+    }
+
+    table.CustomerTable tr:nth-child(even) {
+        background: #D0E4F5;
+    }
+
+    table.CustomerTable thead {
+        background: #1C6EA4;
+        border-bottom: 2px solid #444444;
+    }
+
+        table.CustomerTable thead th {
+            font-size: 15px;
+            font-weight: bold;
+            color: #FFFFFF;
+            border-left: 2px solid #D0E4F5;
+        }
+
+            table.CustomerTable thead th:first-child {
+                border-left: none;
+            }
+
+    table.CustomerTable tfoot td {
+        font-size: 14px;
+    }
+
+    table.CustomerTable tfoot .links {
+        text-align: right;
+    }
+
+        table.CustomerTable tfoot .links a {
+            display: inline-block;
+            background: #1C6EA4;
+            color: #FFFFFF;
+            padding: 2px 8px;
+            border-radius: 5px;
+        }
+
+table.BookingTable {
+    border: 1px solid #1C6EA4;
+    background-color: #EEEEEE;
+    width: 65%;
+    text-align: left;
+    border-collapse: collapse;
+}
+
+    table.BookingTable td, table.BookingTable th {
+        border: 1px solid #AAAAAA;
+        padding: 3px 2px;
+    }
+
+    table.BookingTable tbody td {
+        font-size: 13px;
+    }
+
+    table.BookingTable tr:nth-child(even) {
+        background: #D0E4F5;
+    }
+
+    table.BookingTable thead {
+        background: #1C6EA4;
+        border-bottom: 2px solid #444444;
+    }
+
+        table.BookingTable thead th {
+            font-size: 15px;
+            font-weight: bold;
+            color: #FFFFFF;
+            border-left: 2px solid #D0E4F5;
+        }
+
+            table.BookingTable thead th:first-child {
+                border-left: none;
+            }
+
+    table.BookingTable tfoot td {
+        font-size: 14px;
+    }
+
+    table.BookingTable tfoot .links {
+        text-align: right;
+    }
+
+        table.BookingTable tfoot .links a {
+            display: inline-block;
+            background: #1C6EA4;
+            color: #FFFFFF;
+            padding: 2px 8px;
+            border-radius: 5px;
+        }

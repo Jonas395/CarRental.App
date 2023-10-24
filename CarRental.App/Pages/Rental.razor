@@ -1,0 +1,97 @@
+﻿@page "/"
+@using Business.Classes
+@inject BookingProcessor bp
+<PageTitle>Rental</PageTitle>
+
+<h1><strong>Rental</strong></h1>
+
+
+<div>
+    <h2>
+        Our vehicles
+    </h2>
+    <table class="VehicleTable">
+        <tr>
+            <th class="colstatus">Status</th>
+            <th>Model</th>
+            <th class="coltype">Type</th>
+            <th class="colregistration">Registration</th>
+            <th>Odometer</th>
+            <th class="colprice">€/10Km</th>
+            <th class="colprice">€/day</th>
+        </tr>
+        <tbody>
+            @foreach (var vehicle in bp.GetVehicles().OrderBy(bp => bp.Id))
+            {
+                <tr>
+                    <td>@vehicle.Status</td>
+                    <td>@vehicle.Model</td>
+                    <td>@vehicle.Type</td>
+                    <td>@vehicle.Registration</td>
+                    <td>@vehicle.Odometer</td>
+                    <td>€ @vehicle.PriceDistance</td>
+                    <td>€ @vehicle.PriceDay</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <h2>
+        Customers
+    </h2>
+    <table class="CustomerTable">
+        <tr>
+            <th class="colssn">SSN</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+        </tr>
+        <tbody>
+            @foreach (var customer in bp.GetCustomers().OrderBy(bp => bp.Id))
+            {
+                <tr>
+                    <td>@customer.SSN</td>
+                    <td>@customer.FirstName</td>
+                    <td>@customer.LastName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<h2>
+    Bookings
+</h2>
+<div>
+    <table class="BookingTable">
+        <tr>
+            <th class="colstatus">Status</th>
+            <th>Customer</th>
+            <th>Vehicle</th>
+            <th>Km start</th>
+            <th class="coldate">Started</th>
+            <th class="colinput">Km returned</th>
+            <th class="coldate">Returned</th>
+            <th>Total</th>
+        </tr>
+        <tbody>
+            @foreach (var booking in bp.GetBookings().OrderBy(bp => bp.Id))
+            {
+                <tr>
+                    <td>@booking.Status</td>
+                    <td>@booking.Customer.FirstName @booking.Customer.LastName (@booking.Customer.SSN)</td>
+                    <td>@booking.Vehicle.Model (@booking.Vehicle.Registration)</td>
+                    <td>@booking.Vehicle.Odometer</td>
+                    <td>@booking.StartDate</td>
+                    <td><input /></td>
+                    <td>@booking.EndDate</td>
+                    <td>@booking.Cost</td>
+                    <td><button class="btn btn-primary" onclick="@(() => bp.SetDate(booking.Id))">Return</button></td>
+                </tr>
+                
+            }
+        </tbody>
+    </table>
+</div>
+
+
