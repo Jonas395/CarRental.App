@@ -1,0 +1,94 @@
+﻿@page "/"
+@using Business.Classes
+@inject BookingProcessor bp
+<PageTitle>Rental</PageTitle>
+
+<h1><strong>Rental</strong></h1>
+
+<h2>
+    Our vehicles
+</h2>
+<div>
+    <table>
+        <tr>
+            <th class="column1">Status</th>
+            <th class="col2">Model</th>
+            <th class="col3">Type</th>
+            <th class="col4">Registration</th>
+            <th class="col5">Odometer</th>
+            <th class="col6">$/10Km</th>
+            <th class="col7">$/day</th>
+        </tr>
+        <tbody>
+        @foreach (var item in bp.GetVehicles().OrderBy(bp => bp.Id))
+        {
+                <tr>
+                    <td>@item.Status</td>
+                    <td>@item.Model</td>
+                    <td>@item.Type</td>
+                    <td>@item.Registration</td>
+                    <td>@item.Odometer</td>
+                    <td>@item.PriceDistance</td>
+                    <td>@item.PriceDay</td>
+                </tr>
+        }
+        </tbody>
+    </table>
+</div>
+<h2>
+    Customers
+</h2>
+<div>
+    <table>
+        <tr>
+            <th class="column1">SSN</th>
+            <th class="col2">First Name</th>
+            <th class="col3">Last Name</th>
+        </tr>
+        <tbody>
+            @foreach (var item in bp.GetCustomers().OrderBy(bp => bp.Id))
+            {
+                <tr>
+                    <td>@item.SSN</td>
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<h2>
+    Bookings
+</h2>
+<div>
+    <table>
+        <tr>
+            <th>Status</th>
+            <th class="column1">Customer</th>
+            <th class="col2">Vehicle</th>
+            <th class="col3">Km start</th>
+            <th>Date start</th>
+            <th class="col3">Km returned</th>
+            <th>Date returned</th>
+            <th>Cost</th>
+        </tr>
+        <tbody>
+            @foreach (var item in bp.GetBookings().OrderBy(bp => bp.Id))
+            {
+                <tr>
+                    <td>@item.Status</td>
+                    <td>@item.Customer.FirstName @item.Customer.LastName (@item.Customer.SSN)</td>
+                    <td>@item.Vehicle.Model (@item.Vehicle.Registration)</td>
+                    <td>@item.Vehicle.Odometer</td>
+                    <td>@item.StartDate</td>
+                    <td><input /></td>
+                    <td>@item.EndDate</td>
+                    <td>@item.Cost</td>
+                    <td><button>Return</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
