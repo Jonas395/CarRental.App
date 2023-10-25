@@ -83,10 +83,10 @@
                     <td>@booking.Vehicle.Model (@booking.Vehicle.Registration)</td>
                     <td>@booking.Vehicle.Odometer</td>
                     <td>@booking.StartDate</td>
-                    <td><input /></td>
-                    <td>@booking.EndDate</td>
-                    <td>@booking.Cost</td>
-                    <td><button class="btn btn-primary" onclick="@(() => bp.SetDate(booking.Id))">Return</button></td>
+                    <td>34556.3</td>
+                    <td>@bp.SetEndDate(booking.Id)</td>
+                    <td>@bp.GetCost(booking.Id, 34556.3)</td>
+                    <td><button>Return</button></td>
                 </tr>
                 
             }
