@@ -6,6 +6,5 @@
         Unavailable = 1,
         Available = 2,
         Booked = 3, 
-        Rented = 4
     }
 }

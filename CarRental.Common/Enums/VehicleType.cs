@@ -3,8 +3,9 @@
     public enum VehicleType
     {
         Scooter,
+        ATV,
         Sport, 
         OffRoad,
-        UltraCompact, 
+        Compact, 
     }
 }
