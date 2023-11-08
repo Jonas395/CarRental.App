@@ -83,9 +83,12 @@
                     <td>@booking.Vehicle.Model (@booking.Vehicle.Registration)</td>
                     <td>@booking.Vehicle.Odometer</td>
                     <td>@booking.StartDate</td>
-                    <td><input @bind-value=@booking.Distance placeholder="@booking.Vehicle.Odometer" disabled="@(!booking.Status.Equals(Common.Enums.BookingStatus.Active))"></td>
+                    <td><input @bind-value=@booking.Distance
+                               placeholder="@(booking.Status.Equals(Common.Enums.BookingStatus.Active) ? booking.Vehicle.Odometer : booking.Distance)"
+                        disabled="@(!booking.Status.Equals(Common.Enums.BookingStatus.Active))">
+                    </td>
                     <td>@booking.EndDate</td>
-                    <td>@booking.Cost</td>
+                    <td>@(booking.Cost != null ? $"{booking.Cost}€" : string.Empty)</td>
                     <td><button @onclick="() => bp.ReturnVehicle(booking.Id, booking.Distance)" disabled="@(!booking.Status.Equals(Common.Enums.BookingStatus.Active))">Return</button></td>
                 </tr>
                 
@@ -93,5 +96,3 @@
         </tbody>
     </table>
 </div>
-
-

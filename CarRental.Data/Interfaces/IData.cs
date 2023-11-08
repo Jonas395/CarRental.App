@@ -7,8 +7,5 @@ namespace CarRental.Data.Interfaces
         IEnumerable<IBooking> GetBookings();
         IEnumerable<ICustomer> GetCustomers();
         IEnumerable<IVehicle> GetVehicles();
-        //IBooking GetBooking(int id);
-        //ICustomer GetCustomer(int id);
-        //IVehicle GetVehicle(int id);
     }
 }

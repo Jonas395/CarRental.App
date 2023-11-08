@@ -1,4 +1,5 @@
-﻿using CarRental.Common.Interfaces;
+﻿using CarRental.Common.Classes;
+using CarRental.Common.Interfaces;
 using CarRental.Data.Interfaces;
 using System.Data;
 
@@ -30,56 +31,54 @@ namespace CarRental.Business.Classes
 
             return vehicles;
         }
-        
-        
+
+
         public void ReturnVehicle(int id, double distance)
         {
             var booking = GetBookings().FirstOrDefault(b => b.Id == id);
-            CheckDistance(booking, distance);
-            booking.Distance = distance;
-            CheckDate(booking);
-            booking.EndDate = DateToday();
-            GetCost(booking, distance);
-            CheckStatus(booking);
+            if (booking == null)
+            {
+                throw new ArgumentNullException();
+            }
+            if (distance < booking.Vehicle.Odometer)
+            {
+                throw new ArgumentOutOfRangeException(nameof(distance));
+            }
+            else booking.Distance = distance;
+
+
+            booking.EndDate = DateOnly.FromDateTime(DateTime.Now);
+            GetCost(booking);
+            
 
             booking.Vehicle.Odometer = distance;
             booking.Status = Common.Enums.BookingStatus.Returned;
             booking.Vehicle.Status = Common.Enums.VehicleStatus.Available;
         }
-        public void CheckDistance(IBooking booking, double distance)
+        
+        
+        public void GetCost(IBooking booking)
         {
-            if (distance < booking.Vehicle.Odometer)
-            { 
-                throw new ArgumentOutOfRangeException(nameof(distance)); 
-            } 
+            double cost = booking.Vehicle.PriceDay + (DayDifference(booking.StartDate, booking.EndDate) * booking.Vehicle.PriceDay) + 
+                ((booking.Distance - booking.Vehicle.Odometer) * booking.Vehicle.PriceDistance * 0.1);
+            cost = Math.Round(cost, 2);
+            booking.Cost = cost;
         }
-        public void CheckDate(IBooking booking)
+        
+        
+        public int DayDifference(DateOnly start, DateOnly? end)
         {
-            if (DayDifference(booking.StartDate, DateToday())<0)
+            if(end == null)
+            {
+                throw new ArgumentNullException(nameof(end));
+            }
+            var endstring = end.ToString();
+            DateOnly enddateonly = DateOnly.Parse(endstring);
+            if (start > end)
             {
                 throw new ArgumentOutOfRangeException();
             }
-        }
-        public void CheckStatus(IBooking booking)
-        {
-            if(booking.Status!=Common.Enums.BookingStatus.Active)
-            {
-                throw new ArgumentException(nameof(booking.Status));
-            }
-        }
-        public void GetCost(IBooking booking, double distance)
-        {
-            var dateNow = DateToday();
-            var total = (booking.Vehicle.PriceDistance * 0.1) * (distance - booking.Vehicle.Odometer) + (DayDifference(booking.StartDate, dateNow) * booking.Vehicle.PriceDay);
-            booking.Cost = Math.Round(total, 2);
-        }
-        public DateOnly DateToday()
-        {
-            return DateOnly.FromDateTime(DateTime.Now);
-        }
-        public int DayDifference(DateOnly start, DateOnly end)
-        {
-            var daysDifference = end.DayNumber - start.DayNumber;
+            var daysDifference = enddateonly.DayNumber - start.DayNumber;
             return daysDifference;
         }
     }

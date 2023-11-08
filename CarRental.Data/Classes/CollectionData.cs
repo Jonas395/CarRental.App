@@ -44,7 +44,7 @@ namespace CarRental.Data.Classes
                 PriceDistance = 3,
                 Odometer = 45456.5,
                 Registration = "ABC 132",
-                Status = Common.Enums.VehicleStatus.Booked,
+                Status = Common.Enums.VehicleStatus.Available,
                 Type = Common.Enums.VehicleType.ATV
             };
             IVehicle vehicle4 = new Car
@@ -99,8 +99,8 @@ namespace CarRental.Data.Classes
             _customers.Add(customer2);
             _customers.Add(customer3);
 
-            _bookings.Add(new Booking(1, vehicle4, customer2, Common.Enums.BookingStatus.Active, new DateOnly(2023, 10, 1), null, vehicle4.Odometer, null));
-            _bookings.Add(new Booking(2, vehicle3, customer1, Common.Enums.BookingStatus.Pending, new DateOnly(2023, 10, 1), null, vehicle3.Odometer, null));
+            _bookings.Add(new Booking(1, vehicle4, customer2, Common.Enums.BookingStatus.Active, new DateOnly(2023, 11, 1), null, vehicle4.Odometer, null));
+            _bookings.Add(new Booking(2, vehicle3, customer1, Common.Enums.BookingStatus.Returned, new DateOnly(2023, 10, 27), new DateOnly(2023, 10, 29), vehicle3.Odometer + 500, (vehicle3.PriceDay * 3) + (0.1 * 500 * vehicle3.PriceDistance)));
 
         }
         public IEnumerable<IBooking> GetBookings() => _bookings;
