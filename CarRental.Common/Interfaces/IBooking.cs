@@ -10,7 +10,8 @@ namespace CarRental.Common.Interfaces
         public BookingStatus Status { get; set; }
         public DateOnly StartDate { get; set; }
         public DateOnly? EndDate { get; set; }
-        public double Distance { get; set; }
+        public double DistanceStart { get; set; }
+        public double DistanceEnd { get; set; }
         public double? Cost { get; set; }
     }
 }

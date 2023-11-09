@@ -44,7 +44,7 @@ namespace CarRental.Business.Classes
             {
                 throw new ArgumentOutOfRangeException(nameof(distance));
             }
-            else booking.Distance = distance;
+            else booking.DistanceEnd = distance;
 
 
             booking.EndDate = DateOnly.FromDateTime(DateTime.Now);
@@ -60,7 +60,7 @@ namespace CarRental.Business.Classes
         public void GetCost(IBooking booking)
         {
             double cost = booking.Vehicle.PriceDay + (DayDifference(booking.StartDate, booking.EndDate) * booking.Vehicle.PriceDay) + 
-                ((booking.Distance - booking.Vehicle.Odometer) * booking.Vehicle.PriceDistance * 0.1);
+                ((booking.DistanceEnd - booking.DistanceStart) * booking.Vehicle.PriceDistance * 0.1);
             cost = Math.Round(cost, 2);
             booking.Cost = cost;
         }

@@ -17,7 +17,7 @@ namespace CarRental.Data.Classes
             IVehicle vehicle1 = new Car
             {
                 Id = 1,
-                Model = "Hammerhead-Eagle I-thrust",
+                Model = "911",
                 PriceDay = 20,
                 PriceDistance = 5,
                 Odometer = 2654.5,
@@ -28,7 +28,7 @@ namespace CarRental.Data.Classes
             IVehicle vehicle2 = new Car
             {
                 Id = 2,
-                Model = "Toybota",
+                Model = "Hilux",
                 PriceDay = 40,
                 PriceDistance = 5,
                 Odometer = 78456.5,
@@ -39,7 +39,7 @@ namespace CarRental.Data.Classes
             IVehicle vehicle3 = new Bike
             {
                 Id = 3,
-                Model = "Pro-Rider Road-King",
+                Model = "Kodiak",
                 PriceDay = 12,
                 PriceDistance = 3,
                 Odometer = 45456.5,
@@ -50,7 +50,7 @@ namespace CarRental.Data.Classes
             IVehicle vehicle4 = new Car
             {
                 Id = 4,
-                Model = "Hammerhead-Eagle I-thrust",
+                Model = "911",
                 PriceDay = 12,
                 PriceDistance = 2,
                 Odometer = 32456.5,
@@ -99,8 +99,10 @@ namespace CarRental.Data.Classes
             _customers.Add(customer2);
             _customers.Add(customer3);
 
-            _bookings.Add(new Booking(1, vehicle4, customer2, Common.Enums.BookingStatus.Active, new DateOnly(2023, 11, 1), null, vehicle4.Odometer, null));
-            _bookings.Add(new Booking(2, vehicle3, customer1, Common.Enums.BookingStatus.Returned, new DateOnly(2023, 10, 27), new DateOnly(2023, 10, 29), vehicle3.Odometer + 500, (vehicle3.PriceDay * 3) + (0.1 * 500 * vehicle3.PriceDistance)));
+            _bookings.Add(new Booking(1, vehicle4, customer2, Common.Enums.BookingStatus.Active, new DateOnly(2023, 11, 1), 
+                null, vehicle4.Odometer, vehicle4.Odometer, null));
+            _bookings.Add(new Booking(2, vehicle3, customer1, Common.Enums.BookingStatus.Returned, new DateOnly(2023, 10, 27), new DateOnly(2023, 10, 29),
+                vehicle3.Odometer, vehicle3.Odometer + 500, (vehicle3.PriceDay * 3) + (0.1 * 500 * vehicle3.PriceDistance)));
 
         }
         public IEnumerable<IBooking> GetBookings() => _bookings;
